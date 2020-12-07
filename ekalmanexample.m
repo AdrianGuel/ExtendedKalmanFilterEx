@@ -1,5 +1,6 @@
 %Extended kalman filter example
-% mass-spring-damper system
+% Aplication in a simple mass-spring-damper system
+%Author: Adrian-Josue Guel-Cortez 2020
 clear all;
 
 %Solution to the model
