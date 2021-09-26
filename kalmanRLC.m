@@ -8,7 +8,7 @@ T=1e-3;
 t=0:T:15;
 A=[-1/(C*R),1/C;-1/L,0];
 B=[0;1/L];
-Vi=zeros(1,length(t));
+Vi=sin(t);
 y=zeros(2,length(t));
 y(:,1)=[1;0.1];
 for j=2:length(t)
@@ -17,10 +17,9 @@ end
 
 %Kalman filter
 n=2;
-P_previous=5*eye(n,n);
-Q=zeros(n,n);
-Q(1,1)=5; Q(2,2)=5;
-R=0.001; H=[1,0]; 
+P_previous=1e-3*eye(n,n);
+Q=eye(n,n);
+R=1e-3; H=[1,0]; 
 
 x_previous=[1;0.1];
 x=zeros(n,length(t));
@@ -28,7 +27,7 @@ for k=2:length(t)
     x_model=A*x_previous+B*Vi(k);
     P_kminus=A*P_previous*A'+Q;
     K_k=P_kminus*H'*((H*P_kminus*H'+R)^(-1));
-    x_k=x_model+K_k*(y(1,k)+0.01*randn(1,1)-H*x_model);
+    x_k=x_model+K_k*(y(1,k)-H*x_model);
     P_k=(eye(n,n)-K_k*H)*P_kminus;
     x(:,k)=x_k;
     x_previous=x_k;
