@@ -1,6 +1,6 @@
 %kalman filter example
-%Aplication in a RLC system 
-%Author: Adrian-Josue Guel-Cortez 2021
+%Aplication in a RLC system, via measuring the voltage on the capacitor we estimate the current on the inductor
+%Author: Adrian-Josue Guel-Cortez 2022
 
 %Solution to the model
 R=0.5; L=0.7; C=1;
